@@ -1,0 +1,38 @@
+
+<div style="margin:10px;">
+<div align="center"><p>&nbsp;</p><h1>Oncology Glossary</h1></div>
+
+<p>
+  Download:
+  <%= link_to "CSV", glossaries_path(format: "csv") %> |
+  <%= link_to "Excel", glossaries_path(format: "xls") %>
+</p>
+
+<h3>Import Glossary</h3>
+
+
+<%= form_tag import_glossaries_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
+<br><br>
+
+<table id="glossaries">
+  <tr>
+    <th>&nbsp;</th>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Definition</th>
+  </tr>
+
+<% @glossaries.each do |glossary| %>
+  <tr>
+    <td><strong><%= link_to 'Edit', edit_glossary_path(glossary) %></strong>&nbsp;&nbsp;</td>
+    <td><%= glossary.number %>&nbsp;</td>
+    <td><%= glossary.name %></td>
+    <td><%= glossary.definition %></td>
+  </tr>
+<% end %>
+</table>
+</div>
