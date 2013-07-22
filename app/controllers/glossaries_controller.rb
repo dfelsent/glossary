@@ -53,9 +53,41 @@ def create
 
   def destroy_them_all
     Glossary.destroy_all
-    #redirect_to glossaries_path
   end
 
+  def show
+     @glossary = Glossary.all
+     agent = Mechanize.new
+    agent.open_timeout   = 20000
+    agent.read_timeout   = 20000
+    agent.max_history = 1
+
+    page = agent.get('http://hwmaint.jco.ascopubs.org/cgi/gls-maint?view=lookup')
+
+    myform = page.form_with(:action => '/cgi/gls-maint')
+
+    myuserid_field = myform.field_with(:id => "username")
+    myuserid_field.value = 'prodcms2'  
+    mypass_field = myform.field_with(:id => "password")
+    mypass_field.value = 'Yellow25@!'
+
+    page = agent.submit(myform, myform.buttons.first)
+
+  @glossary.each do |glossary|
+    finalurl = 'http://hwmaint.jco.ascopubs.org/cgi/gls-maint?view=edit&id=jco_glossary;'+ glossary.number.gsub(/.*;/, '') + ''
+    page = agent.get("#{finalurl}")
+    page.encoding = 'windows-1252'
+    glossform = page.form_with(:name => "glossarysubmit")
+    defform = glossform.field_with(:name => "definition")
+    defform.value = glossary.definition
+    page = agent.submit(glossform, glossform.buttons.first)
+    puts "Update of #{glossary.name} was successful!"
+    sleep 10.1
+  end
+  end
+
+def update_terms
+end
 
 end
 

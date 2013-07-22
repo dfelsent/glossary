@@ -5,6 +5,7 @@ Exceldeb::Application.routes.draw do
   end
 
 match '/glossaries/destroy_them_all', to: 'glossaries#destroy_them_all', via: :delete
+match '/glossaries/update_terms', to: 'glossaries#update_terms', via: :post 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
