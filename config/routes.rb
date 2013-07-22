@@ -1,7 +1,10 @@
 Exceldeb::Application.routes.draw do
   resources :glossaries do
     collection { post :import }
+    #collection { delete :destroy }
   end
+
+match '/glossaries/destroy_them_all', to: 'glossaries#destroy_them_all', via: :delete
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

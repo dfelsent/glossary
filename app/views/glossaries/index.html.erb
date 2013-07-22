@@ -1,7 +1,7 @@
 
 <div style="margin:10px;">
 <div align="center"><p>&nbsp;</p><h1>Oncology Glossary</h1></div>
-
+<p><%= link_to 'Clear database', glossaries_destroy_them_all_path, method: :delete, confirm: 'Are you sure you want to delete the entire database?' %></p>
 <p>
   Download:
   <%= link_to "CSV", glossaries_path(format: "csv") %> |
@@ -9,7 +9,6 @@
 </p>
 
 <h3>Import Glossary</h3>
-
 
 <%= form_tag import_glossaries_path, multipart: true do %>
   <%= file_field_tag :file %>

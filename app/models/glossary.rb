@@ -97,9 +97,8 @@ def updateTerms
   end
 end
 
-#def resetDatabase
- # mydata = Glossary.all
-  #mydata.destroy_all   
-#end
+def resetDatabase
+  self.destroy_all
+end
 
 end

@@ -46,26 +46,16 @@ def create
     end
   end
 
- # def destroy
-  #  @mydata = Glossary.all
-   # @mydata.destroy
- #respond_to do |format|
-  #    format.html { redirect_to action: "index" }
-   #   format.csv { send_data Glossary.to_csv(@glossaries) }
-    #  format.xls #{ send_data @glossaries.to_csv(col_sep: "\t") }
-    #end
-  #end
+  def destroy
+    Glossary.destroy_all
+    redirect_to glossaries_path
+  end
 
-#def resetdatabase
- # @glossaries = Glossary.all
-  #@glossaries.destroy
-   #respond_to do |format|
-    #  format.html # index.html.erb
-     # format.csv { send_data Glossary.to_csv(@glossaries) }
-      #format.xls #{ send_data @glossaries.to_csv(col_sep: "\t") }
-    #end
-  #redirect_to action: "index"   
-#end
+  def destroy_them_all
+    Glossary.destroy_all
+    #redirect_to glossaries_path
+  end
+
 
 end
 
