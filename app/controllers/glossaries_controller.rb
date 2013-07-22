@@ -1,8 +1,7 @@
+
 class GlossariesController < ApplicationController
   # GET /glossaries
   # GET /glossaries.json
-
-
 
   def index
     @glossaries = Glossary.all
@@ -25,10 +24,8 @@ def create
         flash[:notice] = "Your term has been saved."
         redirect_to glossaries_path
       else
-        render :action => 'new'
-        format.html { render action: "new" }
-        format.json { render json: @glossary.errors, status: :unprocessable_entity }
-  
+        render :action => 'index'
+        format.html { render action: "index" }
       end
     end
 
@@ -45,11 +42,31 @@ def create
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @glossary.errors, status: :unprocessable_entity }
       end
     end
+  end
 
-end
+ # def destroy
+  #  @mydata = Glossary.all
+   # @mydata.destroy
+ #respond_to do |format|
+  #    format.html { redirect_to action: "index" }
+   #   format.csv { send_data Glossary.to_csv(@glossaries) }
+    #  format.xls #{ send_data @glossaries.to_csv(col_sep: "\t") }
+    #end
+  #end
+
+#def resetdatabase
+ # @glossaries = Glossary.all
+  #@glossaries.destroy
+   #respond_to do |format|
+    #  format.html # index.html.erb
+     # format.csv { send_data Glossary.to_csv(@glossaries) }
+      #format.xls #{ send_data @glossaries.to_csv(col_sep: "\t") }
+    #end
+  #redirect_to action: "index"   
+#end
+
 end
 
 
