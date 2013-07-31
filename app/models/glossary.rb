@@ -48,9 +48,9 @@ def uploadTerms
   myform = page.form_with(:action => '/cgi/gls-maint')
 
     myuserid_field = myform.field_with(:name => "username")
-    myuserid_field.value = 'prodcms2'  
+    myuserid_field.value = 'NOTCORRECT'  
     mypass_field = myform.field_with(:name => "password")
-    mypass_field.value = 'Yellow25@!' 
+    mypass_field.value = 'NOTCORRECT' 
 
  page = agent.submit(myform, myform.buttons.first)
 
